@@ -1,0 +1,23 @@
+name = "Math157FinalProject"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["Math157FinalProject"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.29.1"
+
+[[require]]
+name = "leanblueprint"
+git = "https://github.com/PatrickMassot/leanblueprint.git"
+rev = "master"
+
+[[lean_lib]]
+name = "Math157FinalProject"
