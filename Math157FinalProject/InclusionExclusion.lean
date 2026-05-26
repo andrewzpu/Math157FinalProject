@@ -93,7 +93,28 @@ lemma mem_powerset (T : Finset β) (s : Finset β) :
 
 lemma alternating_sum_powerset (T : Finset β) (s : Finset β) (h : s.Nonempty):
   ∑ T ∈ s.powerset, (-1 : ℤ) ^ T.card = 0 := by
-  sorry
+  rcases h with ⟨a, ha⟩
+  let t := s.erase a
+  have hs : s = insert a t := by
+    simp [t, ha]
+  have hat : a ∉ t := by
+    simp [t]
+  rw [hs, Finset.sum_powerset_insert hat]
+  have hneg :
+      ∑ u ∈ t.powerset, (-1 : ℤ) ^ (insert a u).card =
+        -∑ u ∈ t.powerset, (-1 : ℤ) ^ u.card := by
+    calc
+      ∑ u ∈ t.powerset, (-1 : ℤ) ^ (insert a u).card
+          = ∑ u ∈ t.powerset, -((-1 : ℤ) ^ u.card) := by
+              refine Finset.sum_congr rfl ?_
+              intro u hu
+              have hau : a ∉ u := Finset.notMem_of_mem_powerset_of_notMem hu hat
+              rw [Finset.card_insert_of_notMem hau, pow_succ]
+              ring
+      _ = -∑ u ∈ t.powerset, (-1 : ℤ) ^ u.card := by
+            rw [Finset.sum_neg_distrib]
+  rw [hneg]
+  ring
 
 theorem inclusion_exclusion
     (s : Finset β)
