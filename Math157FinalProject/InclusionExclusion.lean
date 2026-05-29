@@ -4,6 +4,7 @@ open Finset
 
 variable {α β : Type*} [DecidableEq α] [DecidableEq β] [Fintype α]
 
+/-- Placeholder docstring for the biunion insert lemma. -/
 omit [Fintype α] in
 lemma biUnion_insert (s : Finset β) (b : β) (S : β → Finset α) :
   (insert b s).biUnion S = S b ∪ s.biUnion S := by
@@ -17,12 +18,14 @@ lemma biUnion_insert (s : Finset β) (b : β) (S : β → Finset α) :
     · exact ⟨b, Or.inl rfl, hx⟩
     · exact ⟨c, Or.inr hc, hx⟩
 
+/-- Placeholder docstring for the empty biunion lemma. -/
 omit [DecidableEq β] [Fintype α] in
 lemma biUnion_empty (S : β → Finset α) :
   (∅ : Finset β).biUnion S = ∅ := by
   ext x
   simp only [Finset.biUnion_empty, notMem_empty]
 
+/-- Placeholder docstring for the membership characterization of a biunion. -/
 set_option linter.unusedDecidableInType false in
 omit [Fintype α] in
 lemma mem_biUnion (x : α) (s : Finset β) (S : β → Finset α) :
@@ -41,6 +44,7 @@ lemma mem_biUnion (x : α) (s : Finset β) (S : β → Finset α) :
         · left; subst hc; exact hx
         · right; exact ⟨c, hc, hx⟩
 
+/-- Placeholder docstring for the membership characterization of an intersection. -/
 set_option linter.unusedDecidableInType false in
 lemma mem_inf_iff_forall (x : α) (T : Finset β) (S : β → Finset α) :
     x ∈ T.inf S ↔ ∀ b ∈ T, x ∈ S b := by
@@ -57,6 +61,7 @@ lemma mem_inf_iff_forall (x : α) (T : Finset β) (S : β → Finset α) :
       · intro hall
         exact ⟨hall b (Or.inl rfl), fun c hc => hall c (Or.inr hc)⟩
 
+/-- Placeholder docstring for the powerset membership characterization. -/
 set_option linter.unusedDecidableInType false in
 omit [Fintype α] in
 lemma mem_powerset (T : Finset β) (s : Finset β) :
@@ -91,6 +96,7 @@ lemma mem_powerset (T : Finset β) (s : Finset β) :
           simp only [Finset.mem_insert] at hx'
           exact hx'.resolve_left (fun h => ha (h ▸ hx))
 
+/-- Placeholder docstring for the alternating sum over a nonempty powerset. -/
 lemma alternating_sum_powerset (T : Finset β) (s : Finset β) (h : s.Nonempty):
   ∑ T ∈ s.powerset, (-1 : ℤ) ^ T.card = 0 := by
   rcases h with ⟨a, ha⟩
@@ -116,6 +122,7 @@ lemma alternating_sum_powerset (T : Finset β) (s : Finset β) (h : s.Nonempty):
   rw [hneg]
   ring
 
+/-- Placeholder docstring for the inclusion-exclusion theorem. -/
 theorem inclusion_exclusion
     (s : Finset β)
     (S : β → Finset α) :
