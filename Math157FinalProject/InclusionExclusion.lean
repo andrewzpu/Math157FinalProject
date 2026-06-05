@@ -2,6 +2,21 @@ import Mathlib
 
 open Finset
 
+/-!
+Sources/Collaboration Notes:
+
+This file contains a formal proof of the inclusion–exclusion principle in Lean, along with several
+supporting lemmas about finite sets, biunions, and alternating sums over powersets.
+
+We split the work as follows:
+- Andrew Pu (apu@ucsd.edu) developed and proved the intermediary lemmas (such as properties of
+biUnion, mem_biUnion, mem_inf_iff_forall, mem_powerset, and alternating_sum_powerset)
+- Jimmy Ying (jlying@ucsd.edu) completed the main inclusion–exclusion theorem using these results.
+
+We also used Claude Code for debugging assistance during development, particularly for resolving
+type issues and simplifying proof steps.
+-/
+
 variable {α β : Type*} [DecidableEq α] [DecidableEq β] [Fintype α]
 
 omit [Fintype α] in
